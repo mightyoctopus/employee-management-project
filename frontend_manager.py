@@ -1,40 +1,41 @@
-from employee import Employee
 from employee_manager import EmployeeManager
 
 class FrontendManager:
     def __init__(self):
         self.EmployeeManager = EmployeeManager()
 
-    def print_menu(self):
-        messages = [
-            '1) Add a new employee',
-            '2) List all employees',
-            '3) Delete by age range',
-            '4) Update salary given a name',
-            '5) End the program',
+    def menu_ui(self):
+        menu = [
+            "1) Add Employee",
+            "2) View Employee List",
+            "3) Delete Employee By Age",
+            "4) Update Employee Salary",
+            "5) End The Program"
         ]
-        for message in messages:
-            print(message)
+
+        for item in menu:
+            print(item)
+
 
     def run(self):
         while True:
-            print("Choose what you want to process:")
-            self.print_menu()
-            choice = int(input("Your Selection: "))
+            print("Choose what you want to proceed to: ")
+            self.menu_ui()
+            choice = input("Enter your number: ")
 
-            if choice == 1:
-                self.EmployeeManager.add_new_employee()
-            elif choice == 2:
-                self.EmployeeManager.list_employees()
-            elif choice == 3:
-                start_age = int(input("What's the start age? "))
-                end_age = int(input("What's the end age? "))
-                self.EmployeeManager.delete_employees_by_age(start_age, end_age)
-            elif choice == 4:
-                name = input("What's the name of the employee for salary change? ")
-                salary = int(input("What's the new salary amount? "))
-                self.EmployeeManager.update_salary_by_name(name, salary)
-            else:
-                print("Goodbye...")
-                break
+            match choice:
+                case "1":
+                    self.EmployeeManager.add_employee()
+                case "2":
+                    self.EmployeeManager.list_employees()
+                case "3":
+                    self.EmployeeManager.delete_employee_by_age_range()
+                case "4":
+                    self.EmployeeManager.update_employee_salary()
+                case "5":
+                    print("Program ends...")
+                    break
             print("\n")
+
+            # self.EmployeeManager.add_employee()
+

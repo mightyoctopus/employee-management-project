@@ -4,58 +4,52 @@ class EmployeeManager:
     def __init__(self):
         self.employee_list = []
 
-    def add_new_employee(self):
-        print("Add a new employee. ")
-        name = input("Enter employee name. ")
-        age = input("Enter the age of the employee. ")
-        salary = input("What's the salary of the employee? ")
+    def add_employee(self):
+        name = input("Enter the name: ")
+        age = int(input("Enter the age: "))
+        salary = int(input("Enter the salary: "))
 
-        self.employee_list.append(Employee(name, age, salary))
+        if not name:
+            print("Please type in a valid name.")
+        elif not age or not salary:
+            print("Please type in valid number.")
+        elif age <= 0 or salary <= 0 :
+            print("Please type in valid number greater than 0.")
+        else:
+            self.employee_list.append(Employee(name, age, salary))
+            print(self.employee_list)
 
     def list_employees(self):
         if len(self.employee_list) == 0:
-            print("There's no employee!")
-            return
-        else:
-            for emp in self.employee_list:
-                print(emp)
+            print("There are no employees.")
+        for employee in self.employee_list:
+            print(employee)
 
-    def delete_employees_by_age(self, age_from, age_to):
+    def delete_employee_by_age_range(self):
+        start_age = int(input("What's the starting age?"))
+        end_age = int(input("What's the end age?"))
 
         if len(self.employee_list) == 0:
-            print("No employee found.")
-            return
+            print("There are no employees.")
 
-        for emp in self.employee_list:
-            if age_from <= int(emp.age) <= age_to:
-                print(f"Deleting employee {emp.name}")
-                self.employee_list.remove(emp)
-                print(f"{emp} was removed successfully!")
+        for employee in self.employee_list:
+            if start_age <= employee.age <= end_age:
+                self.employee_list.remove(employee)
+                print("Employee successfully removed from the system.")
 
+    def update_employee_salary(self):
+        name = input("What's the name of the employee that you want to update on? ")
+        salary = input("What's the new salary amount? ")
+        if len(self.employee_list) == 0:
+            print("There are no employees.")
 
-    def find_employee_by_name(self, name):
-        for emp in self.employee_list:
-            if emp.name == name:
-                return emp
-        return None
-
-    def update_salary_by_name(self, name, new_salary):
-
-        emp = self.find_employee_by_name(name)
-
-        if emp is None:
-            print("Error: No employee found.")
-        else:
-            emp.salary = new_salary
-            print("Salary modification was successfully done!")
+        for employee in self.employee_list:
+            if employee.name == name:
+                employee.salary = salary
+                print("Salary has been updated.")
 
 
 
-
-
-
-# test_employee = EmployeeManager()
-# print(test_employee.employee_list)
 
 
 

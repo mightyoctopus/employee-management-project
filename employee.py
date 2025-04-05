@@ -5,20 +5,8 @@ class Employee:
         self.salary = salary
 
     def __str__(self):
-        return f"MyClass -- Name: {self.name}, Age: {self.age}, Salary: {self.salary}"
+        return f"CLASS OBJECT: {self.name}: {self.age}, {self.salary}"
 
 
-
-
-#
-# arr = []
-# test = Employee("Hong", 41, 8000)
-#
+# test = Employee("hong", 41, 9000)
 # print(test)
-
-# arr.append(test)
-
-# print(arr)
-
-# for item in arr:
-#     print(item.age)
